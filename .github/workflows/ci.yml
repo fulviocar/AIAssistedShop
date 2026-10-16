@@ -44,7 +44,7 @@ jobs:
 
       - name: Explain the failure with Claude
         id: explain_failure
-        if: steps.run_tests.outcome == 'failure'
+        if: failure()
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
