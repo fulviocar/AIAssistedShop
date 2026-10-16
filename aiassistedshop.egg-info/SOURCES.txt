@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+aiassistedshop.egg-info/PKG-INFO
+aiassistedshop.egg-info/SOURCES.txt
+aiassistedshop.egg-info/dependency_links.txt
+aiassistedshop.egg-info/requires.txt
+aiassistedshop.egg-info/top_level.txt
+app/__init__.py
+app/config.py

@@ -1,0 +1,12 @@
+Flask>=3.1,<4
+Flask-SQLAlchemy>=3.1,<4
+Flask-JWT-Extended>=4.7,<5
+SQLAlchemy>=2.0,<3
+
+# Testing and coverage
+pytest>=8,<9
+pytest-cov>=6,<7
+
+# Playwright end-to-end tests
+playwright>=1.50,<2
+pytest-playwright>=0.6,<1

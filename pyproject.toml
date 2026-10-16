@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aiassistedshop"
+version = "0.1.0"
+description = "AI-assisted e-commerce application"
+requires-python = ">=3.11"
+dependencies = [
+    "Flask>=3.1,<4",
+    "Flask-SQLAlchemy>=3.1,<4",
+    "Flask-JWT-Extended>=4.7,<5"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+base_url = "http://localhost:5000"
+markers = [
+    "unit: isolated unit tests",
+    "integration: integration tests",
+    "e2e: end-to-end browser tests against a running application",
+    "fast: fast-running tests",
+    "slow: slow-running tests",
+]

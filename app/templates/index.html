@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIAssistedShop</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="logo">
+        AIAssistedShop
+    </div>
+
+    <nav id="navigation" class="hidden">
+
+        <button id="products-link">
+            Products
+        </button>
+
+        <button id="cart-link">
+            Cart
+            <span id="cart-count">0</span>
+        </button>
+
+        <button id="orders-link">
+            Orders
+        </button>
+
+        <button id="account-link">
+            My Account
+        </button>
+
+        <button id="logout-button">
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+<main>
+
+    <section id="login-section">
+
+        <h1>Login</h1>
+
+        <form id="login-form">
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    required
+                    autocomplete="email"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    id="password"
+                    type="password"
+                    required
+                    autocomplete="current-password"
+                >
+
+            </div>
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <div
+            id="login-error"
+            class="error hidden"
+        ></div>
+
+        <p>
+            Don't have an account?
+            <button id="show-register-button">
+                Register
+            </button>
+        </p>
+
+    </section>
+
+    <section
+        id="register-section"
+        class="hidden"
+    >
+
+        <h1>Create Account</h1>
+
+        <form id="register-form">
+
+            <div class="form-group">
+
+                <label for="register-name">
+                    Name
+                </label>
+
+                <input
+                    id="register-name"
+                    type="text"
+                    required
+                    autocomplete="name"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="register-email">
+                    Email
+                </label>
+
+                <input
+                    id="register-email"
+                    type="email"
+                    required
+                    autocomplete="email"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="register-password">
+                    Password
+                </label>
+
+                <input
+                    id="register-password"
+                    type="password"
+                    required
+                    autocomplete="new-password"
+                >
+
+            </div>
+
+            <button type="submit">
+                Create Account
+            </button>
+
+        </form>
+
+        <div
+            id="register-error"
+            class="error hidden"
+        ></div>
+
+        <p>
+            Already have an account?
+            <button id="show-login-button">
+                Login
+            </button>
+        </p>
+
+    </section>
+
+    <section
+        id="products-section"
+        class="hidden"
+    >
+
+        <h1>Products</h1>
+
+        <div class="product-search">
+
+            <input
+                id="product-search"
+                type="search"
+                placeholder="Search products..."
+            >
+
+            <button id="search-button">
+                Search
+            </button>
+
+        </div>
+
+        <div id="products-container">
+            Loading products...
+        </div>
+
+    </section>
+
+    <section
+        id="product-detail-section"
+        class="hidden"
+    >
+
+        <button id="back-to-products">
+            ← Back to Products
+        </button>
+
+        <div id="product-detail-container">
+        </div>
+
+    </section>
+
+    <section
+        id="cart-section"
+        class="hidden"
+    >
+
+        <h1>Your Cart</h1>
+
+        <div id="cart-container">
+            Loading cart...
+        </div>
+
+        <div class="cart-actions">
+
+            <button id="checkout-button">
+                Checkout
+            </button>
+
+            <button id="clear-cart-button">
+                Clear Cart
+            </button>
+
+        </div>
+
+    </section>
+
+    <section
+        id="orders-section"
+        class="hidden"
+    >
+
+        <h1>Your Orders</h1>
+
+        <div id="orders-container">
+        </div>
+
+    </section>
+
+    <section
+        id="order-section"
+        class="hidden"
+    >
+
+        <h1>Order Confirmation</h1>
+
+        <div id="order-container">
+        </div>
+
+    </section>
+
+    <section
+        id="account-section"
+        class="hidden"
+    >
+
+        <h1>My Account</h1>
+
+        <div id="account-container">
+            Loading account...
+        </div>
+
+    </section>
+
+</main>
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+></script>
+
+</body>
+
+</html>
