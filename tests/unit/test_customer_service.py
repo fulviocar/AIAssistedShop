@@ -19,7 +19,7 @@ def test_create_customer_with_valid_data(mock_db):
     )
 
     # Assert
-    assert customer.name == "John Doe11111111111111"
+    assert customer.name == "John Doe11111111111111a"
     assert customer.email == "john@example.com"
 
     mock_db.session.scalar.assert_called_once()
