@@ -30,25 +30,36 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Run tests with branch coverage
+        id: run_tests
         env:
           PYTHONPATH: ${{ github.workspace }}
         run: |
-          pytest tests/unit tests/integration \
+          set -o pipefail
+          python -m pytest tests/unit tests/integration \
             --cov=app \
             --cov-branch \
             --cov-report=term-missing \
-            --cov-report=xml:coverage.xml | tee result.txt
+            --cov-report=xml:coverage.xml \
+            2>&1 | tee result.txt
 
-      - name: Explain the failure
-        if: failure()
+      - name: Explain the failure with Claude
+        id: explain_failure
+        if: steps.run_tests.outcome == 'failure'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          claude -p "Summarize why these tests failed and propose the smallest fix. Do not edit files." \
-            < result.txt --output-format json > report.json
+          set -e
+          curl -fsSL https://claude.ai/install.sh | bash
+          export PATH="$HOME/.local/bin:$PATH"
 
-      - name: Upload failure report
-        if: failure()
+          claude -p \
+            "Summarize why these tests failed and propose the smallest fix. Do not edit files." \
+            --tools "" \
+            --output-format json \
+            < result.txt > report.json
+
+      - name: Upload Claude failure report
+        if: always() && steps.explain_failure.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: claude-failure-report
