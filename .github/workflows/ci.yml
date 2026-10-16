@@ -37,7 +37,22 @@ jobs:
             --cov=app \
             --cov-branch \
             --cov-report=term-missing \
-            --cov-report=xml:coverage.xml
+            --cov-report=xml:coverage.xml | tee result.txt
+
+      - name: Explain the failure
+        if: failure()
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "Summarize why these tests failed and propose the smallest fix. Do not edit files." \
+            < result.txt --output-format json > report.json
+
+      - name: Upload failure report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-failure-report
+          path: report.json
 
       - name: Upload coverage report
         if: always()
